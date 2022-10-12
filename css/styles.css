@@ -29,7 +29,7 @@
   padding-right: 10px;
 }
 
-.input-group{
+#tasks{
   width: 38rem;
   flex-wrap: nowrap;
 }
