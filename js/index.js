@@ -1,31 +1,62 @@
-// DOM Elements
-const form = document.getElementById("form");
-const taskName = document.getElementById("taskName");
-const taskDescription = document.getElementById("taskDescription");
-const taskAssignedTo = document.getElementById("assignedTo");
-const dueDate = document.getElementById("dueDate");
-const status = document.getElementById("status");
+const newTask = new TaskManager(0);
+let submitButton = document.getElementById("button");
+let taskName = document.getElementById("taskName");
+let taskDescription = document.getElementById("taskDescription");
+let taskAssignedTo = document.getElementById("assignedTo");
+let dueDate = document.getElementById("dueDate");
+let status = document.getElementById("status");
 
-// Submit Event Listener
-form.addEventListener('submit' , (e) => {
-  e.preventDefault();
-  if(validFormFieldInput()){
-    const task = new TaskManager(0);
-    task.addTask("Wash Dishes", "Wash dishes before dinner","Jaida", "10-22-2022");
-  }
-});
 
-// Validate Data function
+
 function validFormFieldInput(data){
   // get the values from the inputs
-  const taskValue = taskName.value.trim();
-  const descriptionValue = taskDescription.value.trim();
-  const assignedValue = taskAssignedTo.value.trim();
-  const dueDateValue = dueDate.value.trim();
-  const statusValue = status.value.trim();
-}
-// validFormFieldInput();
 
-// Initialize new task
-const task = new TaskManager(0);
-task.addTask("Wash Dishes", "Wash dishes before dinner","Jaida", "10-22-2022");
+}
+
+// Submit Event Listener
+submitButton.addEventListener('click' , (e) => {
+  e.preventDefault();
+  const form = document.getElementById("form");
+  let taskValue = taskName.value.trim();
+  let descriptionValue = taskDescription.value.trim();
+  let assignedValue = taskAssignedTo.value.trim();
+  let dueDateValue = dueDate.value.trim();
+  let statusValue = status.value.trim();
+
+  let taskHtml = createTaskHtml(
+    taskValue,
+    descriptionValue,
+    assignedValue,
+    dueDateValue,
+    statusValue,
+  );
+
+  if (
+      taskValue === '' ||
+      descriptionValue === '' ||
+    assignedValue === '' ||
+      dueDateValue === '' ||
+      statusValue === ''
+    ) {
+      alert('please complete required fields')
+
+    }
+    //if form has values call the addTask method and render method to see new task
+    else {
+      newTask.addTask(
+        taskValue,
+        descriptionValue,
+        assignedValue,
+        dueDateValue,
+        statusValue
+      );
+      newTask.render;
+      newTask.save;
+      taskValue = '';
+    descriptionValue = '';
+      assignedValue = '';
+      dueDateValue = '';
+      statusValue = '';
+
+  }
+});
