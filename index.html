@@ -27,7 +27,7 @@
       <h1>Task Manager</h1>
 
       <!-- Page 1 Tasks Section -->
-<!--
+      <!--
       <div class="container">
         <div class="row">
           <div class="col">
@@ -62,64 +62,28 @@
       <!-- Task Selectors -->
 
       <section id="tasks">
-
-        <h1>Add New Task</h1>
-
-        <!-- Task Name -->
-        <form>
-          <div class="row">
-            <div class="col-4">
-              <label for="validationCustom01" class="form-label"><strong>Task Name</strong></label>
-              <select class="form-select" id="validationCustom01" required>
-                <option selected disabled value="">Select</option>
-                <option value="dishes">Wash Dishes</option>
-                <option value="groceries">Pick up groceries</option>
-                <option value="garage">Clean garage</option>
-                <option value="swiffer">Swiffer floors</option>
-                <option value="pick up">Pick kids up from day care</option>
-              </select>
+        <div class="container mt-5">
+          <h3>Add New Task</h3>
+          <form class="row g-3" id="form">
+            <div class="col-md-4">
+              <label for="taskName" class="form-label">Task Name</label>
+              <input type = "text" class="form-control" id="taskName" required>
             </div>
-
-
-            <!-- Task Description -->
-
-            <div class="col-4">
-
-              <label for="validationCustom02" class="form-label"><strong>Task Description</strong></label>
-              <select class="form-select" id="validationCustom02" required>
-                <option selected disabled value="">Select</option>
-                <option value="chores">Chores</option>
-                <option value="errands">Errands</option>
-                <option value="childcare">Childcare</option>
-              </select>
+            <div class="col-md-4">
+              <label for="taskDescription" class="form-label">Task Description</label>
+              <input type = "text" class="form-control" id="taskDescription" required>
             </div>
-
-            <!-- Assigned To -->
-            <div class="col-4">
-              <label for="validationCustom03" class="form-label"><strong>Assigned To</strong></label>
-              <select class="form-select" id="validationCustom03" required>
-                <option selected disabled value="">Select</option>
-                <option value="Jaida">Jaida</option>
-                <option value="Safiya">Safiya</option>
-                <option value="Hareg">Hareg</option>
-                <option value="Hanna">Hanna</option>
-              </select>
+            <div class="col-md-4">
+              <label for="assignedTo" class="form-label">Assigned To</label>
+              <input type = "text" class="form-control" id="assignedTo" required>
             </div>
-          </div>
-
-          <!-- Due Date -->
-          <div class="row">
-            <div class="col-6">
-              <label for="duedate" class="form-label"><strong>Due Date</strong></label>
-              <input type="date" class="form-control" id="duedate" name="duedate">
+            <div class="col-md-8">
+              <label for="dueDate" class="form-label">Due Date</label>
+              <input type = "date" class="form-control" id="dueDate" required>
             </div>
-          </div>
-
-          <!-- Status -->
-          <div class="row">
-            <div class="col-6">
-              <label for="validationCustom04" class="form-label"><strong>Status</strong></label>
-              <select class="form-select" id="validationCustom04" required>
+            <div class="col-md-4">
+              <label for="status" class="form-label"><strong>Status</strong></label>
+              <select class="form-select" id="status" required>
                 <option selected disabled value="">Select</option>
                 <option value="todo">To-Do</option>
                 <option value="inprogress">In Progress</option>
@@ -127,37 +91,21 @@
                 <option value="done">Done</option>
               </select>
             </div>
-          </div>
-          <!-- Submit Button -->
-          <input type="submit" id="submit-btn" type="button" class="btn btn-outline-success btn-lg" style="padding-left: 25px"><i class="fa-solid fa-plus"></i></input>
-    </div>
-    </form>
-
-  </section>
-
-
-  <!-- Task Confirmation-->
-  <section id="confirmation">
-    <div id="task-confirmation" class="alert alert-success" role="alert">
-      <h4 class="alert-heading">Task Created!</h4>
-  <hr>
-  <ul>
-    <li><strong>Task Name:</strong></li>
-    <li><strong>Task Description:</strong></li>
-    <li><strong>Assigned To:</strong></li>
-    <li><strong>Due Date:</strong></li>
-    <li><strong>Status:</strong></li>
-  </ul>
-
-        <a href="#" class="card-link">Close</a>
-    </div>
-  </div>
-</div>
-  </section>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+            </div>
+        </section>
 
 
-<!-- JavaScript -->
-  <script src="resources/index.js"></script>
+
+
+
+
+  <!-- JavaScript -->
+  <script src="js/taskManager.js"></script>
+  <script src="js/index.js"></script>
   <!-- Bootstrap Script -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
