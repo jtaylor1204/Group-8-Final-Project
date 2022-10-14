@@ -1,62 +1,56 @@
+// Initialize Task Manager
 const newTask = new TaskManager(0);
+
+
+// DOM Elements
+const form = document.getElementById("form");
+const taskConfirmation = document.getElementById("newTaskList")
 let submitButton = document.getElementById("button");
 let taskName = document.getElementById("taskName");
 let taskDescription = document.getElementById("taskDescription");
 let taskAssignedTo = document.getElementById("assignedTo");
 let dueDate = document.getElementById("dueDate");
 let status = document.getElementById("status");
+let input = document.querySelectorAll("#taskName, #taskDescription, #assignedTo, #dueDate, #status");
+let alert = document.getElementById('alert');
 
+taskConfirmation.hidden= true;
+alert.style.display = 'none';
 
+// let taskHtml = createTaskHtml("wash dishes", "wash before dinner", "Jaida", "10-22-2022", "TODO");
+// console.log(taskHtml);
 
-function validFormFieldInput(data){
+// Validate Data function
+function validFormFieldInput(data) {
   // get the values from the inputs
-
+  return
+  taskName.value.trim();
+  taskDescription.value.trim();
+  taskAssignedTo.value.trim();
+  dueDate.value.trim();
+  status.value.trim();
 }
+validFormFieldInput();
 
 // Submit Event Listener
-submitButton.addEventListener('click' , (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const form = document.getElementById("form");
-  let taskValue = taskName.value.trim();
-  let descriptionValue = taskDescription.value.trim();
-  let assignedValue = taskAssignedTo.value.trim();
-  let dueDateValue = dueDate.value.trim();
-  let statusValue = status.value.trim();
-
-  let taskHtml = createTaskHtml(
-    taskValue,
-    descriptionValue,
-    assignedValue,
-    dueDateValue,
-    statusValue,
-  );
-
-  if (
-      taskValue === '' ||
-      descriptionValue === '' ||
-    assignedValue === '' ||
-      dueDateValue === '' ||
-      statusValue === ''
-    ) {
-      alert('please complete required fields')
-
+  if(taskName.value === ''|| taskDescription.value === ''|| taskAssignedTo.value === ''){
+    alert.style.display = 'block';
+    //Remove alert after one second
+    setTimeout(() => {
+      alert.style.display = 'none';
+    }, 1000);
+  } else {
+  newTask.addTask(taskName.value.trim(),
+    taskDescription.value.trim(),
+    taskAssignedTo.value.trim(),
+    dueDate.value.trim(),
+    status.value.trim());
+    newTask.render();
+    taskConfirmation.hidden=false;
+    input.forEach(input =>{
+      input.value=" ";
+    })
     }
-    //if form has values call the addTask method and render method to see new task
-    else {
-      newTask.addTask(
-        taskValue,
-        descriptionValue,
-        assignedValue,
-        dueDateValue,
-        statusValue
-      );
-      newTask.render;
-      newTask.save;
-      taskValue = '';
-    descriptionValue = '';
-      assignedValue = '';
-      dueDateValue = '';
-      statusValue = '';
-
-  }
 });

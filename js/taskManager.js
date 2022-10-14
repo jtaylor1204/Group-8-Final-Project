@@ -32,7 +32,6 @@ class TaskManager{
     this.tasks.push(task);
 
   }
-};
   render = () => {
   let tasksHtmlList =[];
   for (let i = 0; i < this.tasks.length; i++) {
@@ -54,4 +53,5 @@ class TaskManager{
   let tasksHtml = tasksHtmlList.join('\n');
     const tasksList = document.getElementById('newTaskList');
     tasksList.innerHTML = tasksHtml;
+  }
   };
