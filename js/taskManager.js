@@ -1,6 +1,6 @@
-let createTaskHtml = (name, description, assignedTo, dueDate, status)=>{
+let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
   const html = `
-    <li class="list-group-item">
+    <li data-task-id="${id}" class="list-group-item">
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
             <h5>${name}</h5>
             <span class="badge badge-danger">${status}</span>
@@ -10,6 +10,9 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status)=>{
             <small>Due: ${dueDate}</small>
         </div>
         <p>${description}</p>
+        <div class="justify-content-between">
+        <button type="button" id= "done-btn" class="btn btn-outline-success">Mark as Done</button>
+        </div>
     </li>
     `;
     return html;
@@ -31,13 +34,25 @@ class TaskManager{
     };
     this.tasks.push(task);
 
-  }
+  };
+  getTaskById = (taskId) => {
+    let foundTask;
+      for (let i = 0; i < this.tasks.length; i++) {
+        let task = this.tasks[i];
+        if(task.id === taskId){
+        let foundTask = task;
+          return foundTask;
+    }
+      }
+    };
+
+
   render = () => {
   let tasksHtmlList =[];
   for (let i = 0; i < this.tasks.length; i++) {
     const task = this.tasks[i];
     const date = new Date(task.dueDate);
-    const formattedDate = `${date.getMonth()}/${
+    const formattedDate = `${date.getMonth() + 1}/${
       date.getDate() + 1
     }/${date.getFullYear()}`;
     let taskHtml = createTaskHtml(
@@ -46,7 +61,7 @@ class TaskManager{
       task.assignedTo,
       formattedDate,
       task.status,
-      task.currentID
+      task.id
     );
     tasksHtmlList.push(taskHtml);
   }

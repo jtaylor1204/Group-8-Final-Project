@@ -4,7 +4,6 @@ const newTask = new TaskManager(0);
 
 // DOM Elements
 const form = document.getElementById("form");
-const taskConfirmation = document.getElementById("newTaskList")
 let submitButton = document.getElementById("button");
 let taskName = document.getElementById("taskName");
 let taskDescription = document.getElementById("taskDescription");
@@ -13,9 +12,9 @@ let dueDate = document.getElementById("dueDate");
 let status = document.getElementById("status");
 let input = document.querySelectorAll("#taskName, #taskDescription, #assignedTo, #dueDate, #status");
 let alert = document.getElementById('alert');
+const taskConfirmation = document.querySelector("#newTaskList");
 
 taskConfirmation.hidden= true;
-alert.style.display = 'none';
 
 // let taskHtml = createTaskHtml("wash dishes", "wash before dinner", "Jaida", "10-22-2022", "TODO");
 // console.log(taskHtml);
@@ -53,4 +52,15 @@ form.addEventListener('submit', (e) => {
       input.value=" ";
     })
     }
+});
+
+// / Task Card event listener
+
+taskConfirmation.addEventListener('click', (event) =>{
+  if(event.target.id === "done-btn"){
+    let taskId = event.target.parentElement.parentElement;
+    let task = newTask.getTaskById(taskId);
+    task.status = 'DONE';
+    newTask.render();
+  }
 });
