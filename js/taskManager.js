@@ -11,7 +11,7 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
             <small>Due: ${dueDate}</small>
         </div>
         <p>${description}</p>
-        <div class="justify-content-between">
+        <div class="d-flex w-100 mb-3 justify-content-between ${status === 'done' || status === 'DONE' ? 'invisible' : 'visible'}">
         <button type="button" id= "done-btn" class="btn btn-outline-success">Mark as Done</button>
         </div>
     </li>
