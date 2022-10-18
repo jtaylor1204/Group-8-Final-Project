@@ -3,8 +3,9 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
     <li data-task-id="${id}" class="list-group-item">
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
             <h5>${name}</h5>
-            <span class="badge badge-danger">${status}</span>
-        </div>
+            <span class="badge ${status === 'todo' ? 'badge badge-danger' : status === 'inprogress' ? 'badge badge-warning'
+        : status === 'inreview' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
+          </div>
         <div class="d-flex w-100 mb-3 justify-content-between">
             <small>Assigned To: ${assignedTo}</small>
             <small>Due: ${dueDate}</small>

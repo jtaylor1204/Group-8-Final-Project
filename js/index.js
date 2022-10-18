@@ -58,7 +58,8 @@ form.addEventListener('submit', (e) => {
 
 taskConfirmation.addEventListener('click', (event) =>{
   if(event.target.id === "done-btn"){
-    let taskId = event.target.parentElement.parentElement;
+    let parentTask = event.target.parentElement.parentElement;
+    let taskId = +parentTask.dataset.taskId;
     let task = newTask.getTaskById(taskId);
     task.status = 'DONE';
     newTask.render();
