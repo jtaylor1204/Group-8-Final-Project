@@ -14,7 +14,11 @@ let input = document.querySelectorAll("#taskName, #taskDescription, #assignedTo,
 let alert = document.getElementById('alert');
 const taskConfirmation = document.querySelector("#newTaskList");
 
+// Hide Tasks on load
 taskConfirmation.hidden= true;
+// Call load and save methods
+newTask.load();
+newTask.save();
 
 // let taskHtml = createTaskHtml("wash dishes", "wash before dinner", "Jaida", "10-22-2022", "TODO");
 // console.log(taskHtml);
@@ -47,6 +51,7 @@ form.addEventListener('submit', (e) => {
     dueDate.value.trim(),
     status.value.trim());
     newTask.render();
+    newTask.save();
     taskConfirmation.hidden=false;
     input.forEach(input =>{
       input.value=" ";
@@ -63,5 +68,8 @@ taskConfirmation.addEventListener('click', (event) =>{
     let task = newTask.getTaskById(taskId);
     task.status = 'DONE';
     newTask.render();
+    newTask.save();
   }
 });
+
+// Local Storage
