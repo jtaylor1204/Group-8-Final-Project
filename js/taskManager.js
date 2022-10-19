@@ -11,9 +11,12 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
             <small>Due: ${dueDate}</small>
         </div>
         <p>${description}</p>
-        <div class="d-flex w-100 mb-3 justify-content-between ${status === 'DONE' ? 'invisible' : 'visible'}">
+        <div class=" ${status === 'DONE' ? 'invisible' : 'visible'}">
         <button type="button" id= "done-btn" class="btn btn-outline-success">Mark as Done</button>
-        </div>
+</div>
+<div class ="delete">
+        <button type="button" id= "delete-btn" class="btn btn-outline-danger">Delete Task</button>
+</div>
     </li>
     `;
     return html;
@@ -66,6 +69,16 @@ class TaskManager{
     }
   };
 
+  deleteTask = (taskId) => {
+    let newTasks = [];
+    for (let i = 0; i < this.tasks.length; i++) {
+      let task = this.tasks[i];
+        if(task.id !== taskId){
+          newTasks.push(task);
+          this.tasks = newTasks;
+        }
+    }
+  }
 
   render = () => {
   let tasksHtmlList =[];

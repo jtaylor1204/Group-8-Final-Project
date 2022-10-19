@@ -16,9 +16,10 @@ const taskConfirmation = document.querySelector("#newTaskList");
 
 // Hide Tasks on load
 taskConfirmation.hidden= true;
+
 // Call load and save methods
 newTask.load();
-newTask.save();
+newTask.render();
 
 // let taskHtml = createTaskHtml("wash dishes", "wash before dinner", "Jaida", "10-22-2022", "TODO");
 // console.log(taskHtml);
@@ -60,7 +61,6 @@ form.addEventListener('submit', (e) => {
 });
 
 // / Task Card event listener
-
 taskConfirmation.addEventListener('click', (event) =>{
   if(event.target.id === "done-btn"){
     let parentTask = event.target.parentElement.parentElement;
@@ -70,6 +70,14 @@ taskConfirmation.addEventListener('click', (event) =>{
     newTask.render();
     newTask.save();
   }
-});
+  if(event.target.id === "delete-btn"){
+    let parentTask = event.target.parentElement.parentElement;
+    console.log(parentTask);
+    let taskId = +parentTask.dataset.taskId;
+    newTask.deleteTask(taskId);
+    newTask.save();
+    newTask.render();
 
-// Local Storage
+
+  }
+});

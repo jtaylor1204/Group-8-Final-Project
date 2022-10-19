@@ -1,4 +1,12 @@
+body{
+  background-color: #FFF8EA;
+  font-family: 'Fuzzy Bubbles', cursive;
+}
+h1{
+  font-weight: 700;
+}
 
+/* IDs */
 #dropdownMenuButton1{
   float: right;
 }
@@ -9,27 +17,46 @@
 #search{
   width: 18rem;
 }
+#tasks{
+  width: 38rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  border-radius: 40px;
+  background: #9E7676;
+  box-shadow:  5px 5px 10px #886565,
+               -5px -5px 10px #b48787;
+}
+#button{
+  align: center;
+}
+
+/* Task Buttons */
 
 .btn-outline-success{
   margin-top: 20px;
-  margin-left: 290px;
 }
+.btn-outline-danger{
+  margin-top: 20px;
+  display:inline-table;
+}
+.visible{
+  display: inline;
+  margin-left: 720px;
+}
+.delete{
+  display:inline;
+}
+
+/* Task Form */
 .col{
   flex-basis: 0;
   flex-grow: 0;
 }
-.container{
-  padding-top: 15px;
-}
-.container-fluid{
-  padding: 3% 15% 7%;
+
+.mt-5{
+  padding: 20px 10px 20px 20px;
 }
 
 .fa-solid{
   padding-right: 10px;
-}
-
-#tasks{
-  width: 38rem;
-  flex-wrap: nowrap;
 }
