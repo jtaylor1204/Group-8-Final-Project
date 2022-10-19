@@ -34,7 +34,7 @@ validFormFieldInput();
 // Submit Event Listener
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  if(taskName.value === ''|| taskDescription.value === ''|| taskAssignedTo.value === ''){
+  if(taskName.value == ''|| taskDescription.value == ''|| taskAssignedTo.value == ''){
     alert.style.display = 'block';
     //Remove alert after one second
     setTimeout(() => {

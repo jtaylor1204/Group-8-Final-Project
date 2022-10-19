@@ -3,21 +3,21 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
     <li data-task-id="${id}" class="list-group-item">
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
             <h5>${name}</h5>
-            <span class="badge ${status === 'todo' ? 'badge badge-danger' : status === 'inprogress' ? 'badge badge-warning'
-        : status === 'inreview' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
+            <span class="badge ${status === 'To-Do' ? 'badge badge-danger' : status === 'In Progress' ? 'badge badge-warning'
+        : status === 'In Review' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
           </div>
         <div class="d-flex w-100 mb-3 justify-content-between">
             <small>Assigned To: ${assignedTo}</small>
             <small>Due: ${dueDate}</small>
         </div>
         <p>${description}</p>
-        <div class="d-flex w-100 mb-3 justify-content-between ${status === 'done' || status === 'DONE' ? 'invisible' : 'visible'}">
+        <div class="d-flex w-100 mb-3 justify-content-between ${status === 'DONE' ? 'invisible' : 'visible'}">
         <button type="button" id= "done-btn" class="btn btn-outline-success">Mark as Done</button>
         </div>
     </li>
     `;
     return html;
-}
+};
 
 class TaskManager{
   constructor(currentID = 0){
