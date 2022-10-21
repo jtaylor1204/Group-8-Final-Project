@@ -1,105 +1,101 @@
-let createTaskHtml = (name, description, assignedTo, dueDate, status, id)=>{
-  const html = `
-    <li data-task-id="${id}" class="list-group-item">
+// task html
+const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => `
+    <br>
+    <li class="list-group-item task-style task-bg" data-task-id=${id}>
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
             <h5>${name}</h5>
             <span class="badge ${status === 'To-Do' ? 'badge badge-danger' : status === 'In Progress' ? 'badge badge-warning'
-        : status === 'In Review' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
-          </div>
+                    : status === 'In Review' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
+        </div>
         <div class="d-flex w-100 mb-3 justify-content-between">
             <small>Assigned To: ${assignedTo}</small>
             <small>Due: ${dueDate}</small>
         </div>
         <p>${description}</p>
-        <div class=" ${status === 'DONE' ? 'invisible' : 'visible'}">
-        <button type="button" id= "done-btn" class="btn btn-outline-success">Mark as Done</button>
-</div>
-<div class ="delete">
-        <button type="button" id= "delete-btn" class="btn btn-outline-danger">Delete Task</button>
-</div>
+        <div class="d-flex w-100 justify-content-end btns">
+            <button class="btn-background btn btn-outline-success done-button mr-1 ${status === 'DONE' ? 'invisible' : 'visible'}">Mark As Done</button>
+            <button class="btn-background btn btn-outline-danger delete-button">Delete</button>
+        </div>
     </li>
-    `;
-    return html;
-};
+    <br>
+`;
 
-class TaskManager{
-  constructor(currentID = 0){
-    this.currentID = currentID;
-    this.tasks =[];
+// task manager
+class TaskManager {
+  constructor(currentId = 0) {
+    this.tasks = [];
+    this.currentId = currentId;
   }
-  addTask(name, description, assignedTo, dueDate, status = 'TO-DO'){
-    let task = {
-      id: this.currentID++,
+
+  addTask(name, description, assignedTo, dueDate, status = "TO-DO") {
+    const task = {
+      id: this.currentId++,
       name: name,
       description: description,
       assignedTo: assignedTo,
       dueDate: dueDate,
-      status: status,
+      status: status
     };
+
     this.tasks.push(task);
+  }
 
-  };
-  getTaskById = (taskId) => {
-    let foundTask;
-      for (let i = 0; i < this.tasks.length; i++) {
-        let task = this.tasks[i];
-        if(task.id === taskId){
-        let foundTask = task;
-          return foundTask;
-    }
-      }
-    };
-    save =() => {
-      let tasksJson = JSON.stringify(this.tasks);
-      let currentId = JSON.stringify(this.currentID);
-      localStorage.setItem('tasks', tasksJson);
-      localStorage.setItem('currentId', currentId);
-    }
-
-    load = () => {
-      if (localStorage.getItem('tasks')){
-        let tasksJson = localStorage.getItem('tasks');
-        tasksJson = JSON.parse(tasksJson);
-        this.tasks =  tasksJson;
-      }
-     if (localStorage.getItem('currentId')){
-       let currentId = localStorage.getItem('currentId');
-       currentId = parseInt(currentId);
-       this.currentID = currentId;
-    }
-  };
-
-  deleteTask = (taskId) => {
-    let newTasks = [];
+  //  deleteTask method
+  deleteTask(taskId) {
+    const newTasks = [];
     for (let i = 0; i < this.tasks.length; i++) {
-      let task = this.tasks[i];
-        if(task.id !== taskId){
-          newTasks.push(task);
-          this.tasks = newTasks;
-        }
+      const task = this.tasks[i];
+      if (task.id !== taskId) {
+        newTasks.push(task);
+      }
     }
+    this.tasks = newTasks;
   }
+// get task by id method
+  getTaskById(taskId) {
+    let foundTask;
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      if (task.id === taskId) {
+        foundTask = task;
+      }
+    }
 
-  render = () => {
-  let tasksHtmlList =[];
-  for (let i = 0; i < this.tasks.length; i++) {
-    const task = this.tasks[i];
-    const date = new Date(task.dueDate);
-    const formattedDate = `${date.getMonth() + 1}/${
-      date.getDate() + 1
-    }/${date.getFullYear()}`;
-    let taskHtml = createTaskHtml(
-      task.name,
-      task.description,
-      task.assignedTo,
-      formattedDate,
-      task.status,
-      task.id
-    );
-    tasksHtmlList.push(taskHtml);
+    return foundTask;
   }
-  let tasksHtml = tasksHtmlList.join('\n');
-    const tasksList = document.getElementById('newTaskList');
+// render method
+  render() {
+    const tasksHtmlList = [];
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      const date = new Date(task.dueDate);
+      const formattedDate = `${date.getMonth() + 1}/${date.getDate()+ 1}/${date.getFullYear()}`;
+      const taskHtml = createTaskHtml(task.id, task.name, task.description, task.assignedTo, formattedDate, task.status);
+      tasksHtmlList.push(taskHtml);
+    }
+    const tasksHtml = tasksHtmlList.join('\n');
+    const tasksList = document.querySelector('#newTaskList');
     tasksList.innerHTML = tasksHtml;
   }
-  };
+
+// Save tasks to local storage
+  save() {
+    const tasksJson = JSON.stringify(this.tasks);
+    localStorage.setItem('tasks', tasksJson);
+    const currentId = String(this.currentId);
+    localStorage.setItem('currentId', currentId);
+  }
+
+// load tasks
+  load() {
+    if (localStorage.getItem('tasks')) {
+      const tasksJson = localStorage.getItem('tasks');
+      this.tasks = JSON.parse(tasksJson);
+    }
+
+    if (localStorage.getItem('currentId')) {
+      const currentId = localStorage.getItem('currentId');
+      this.currentId = Number(currentId);
+    }
+  }
+}

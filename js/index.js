@@ -1,83 +1,58 @@
-// Initialize Task Manager
-const newTask = new TaskManager(0);
 
+// Instantiaze taskManager
+let taskManager = new TaskManager(0);
 
-// DOM Elements
-const form = document.getElementById("form");
-let submitButton = document.getElementById("button");
-let taskName = document.getElementById("taskName");
-let taskDescription = document.getElementById("taskDescription");
-let taskAssignedTo = document.getElementById("assignedTo");
-let dueDate = document.getElementById("dueDate");
-let status = document.getElementById("status");
-let input = document.querySelectorAll("#taskName, #taskDescription, #assignedTo, #dueDate, #status");
-let alert = document.getElementById('alert');
-const taskConfirmation = document.querySelector("#newTaskList");
+taskManager.load();
+taskManager.render();
 
-// Hide Tasks on load
-taskConfirmation.hidden= true;
+const newTaskForm = document.querySelector('#form');
 
-// Call load and save methods
-newTask.load();
-newTask.render();
+newTaskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const newTaskNameInput = document.querySelector('#taskName');
+    const newTaskDescription = document.querySelector('#taskDescription');
+    const newTaskAssignedTo = document.querySelector('#assignedTo');
+    const newTaskDueDate = document.querySelector('#dueDate');
+    const newStatus = document.querySelector('#status');
 
-// let taskHtml = createTaskHtml("wash dishes", "wash before dinner", "Jaida", "10-22-2022", "TODO");
-// console.log(taskHtml);
+        // Validation code
 
-// Validate Data function
-function validFormFieldInput(data) {
-  // get the values from the inputs
-  return
-  taskName.value.trim();
-  taskDescription.value.trim();
-  taskAssignedTo.value.trim();
-  dueDate.value.trim();
-  status.value.trim();
-}
-validFormFieldInput();
+    const name = newTaskNameInput.value;
+    const description = newTaskDescription.value;
+    const assignedTo = newTaskAssignedTo.value;
+    const dueDate = newTaskDueDate.value;
+    const status = newStatus.value;
 
-// Submit Event Listener
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  if(taskName.value == ''|| taskDescription.value == ''|| taskAssignedTo.value == ''){
-    alert.style.display = 'block';
-    //Remove alert after one second
-    setTimeout(() => {
-      alert.style.display = 'none';
-    }, 1000);
-  } else {
-  newTask.addTask(taskName.value.trim(),
-    taskDescription.value.trim(),
-    taskAssignedTo.value.trim(),
-    dueDate.value.trim(),
-    status.value.trim());
-    newTask.render();
-    newTask.save();
-    taskConfirmation.hidden=false;
-    input.forEach(input =>{
-      input.value=" ";
-    })
-    }
+    taskManager.addTask(name, description, assignedTo, dueDate, status);
+    taskManager.save();
+    taskManager.render();
+
+    newTaskNameInput.value = '';
+    newTaskDescription.value = '';
+    newTaskAssignedTo.value = '';
+    newTaskDueDate.value = '';
+    newStatus.value = '';
 });
 
-// / Task Card event listener
-taskConfirmation.addEventListener('click', (event) =>{
-  if(event.target.id === "done-btn"){
-    let parentTask = event.target.parentElement.parentElement;
-    let taskId = +parentTask.dataset.taskId;
-    let task = newTask.getTaskById(taskId);
-    task.status = 'DONE';
-    newTask.render();
-    newTask.save();
-  }
-  if(event.target.id === "delete-btn"){
-    let parentTask = event.target.parentElement.parentElement;
-    console.log(parentTask);
-    let taskId = +parentTask.dataset.taskId;
-    newTask.deleteTask(taskId);
-    newTask.save();
-    newTask.render();
+// button event listeners
+// Done Listener
+const tasksList = document.querySelector('#newTaskList');
+tasksList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('done-button')) {
+        const parentTask = event.target.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        const task = taskManager.getTaskById(taskId);
+        task.status = 'DONE';
+        taskManager.save();
+        taskManager.render();
+    }
 
-
-  }
+    // Delete Listener
+    if (event.target.classList.contains('delete-button')) {
+        const parentTask = event.target.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        taskManager.deleteTask(taskId);
+        taskManager.save();
+        taskManager.render();
+    }
 });
