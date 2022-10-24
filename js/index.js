@@ -2,10 +2,12 @@
 // Instantiaze taskManager
 let taskManager = new TaskManager(0);
 
+
 taskManager.load();
 taskManager.render();
 
 const newTaskForm = document.querySelector('#form');
+
 
 newTaskForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -15,7 +17,6 @@ newTaskForm.addEventListener('submit', (event) => {
     const newTaskDueDate = document.querySelector('#dueDate');
     const newStatus = document.querySelector('#status');
 
-        // Validation code
 
     const name = newTaskNameInput.value;
     const description = newTaskDescription.value;
@@ -26,6 +27,9 @@ newTaskForm.addEventListener('submit', (event) => {
     taskManager.addTask(name, description, assignedTo, dueDate, status);
     taskManager.save();
     taskManager.render();
+    taskManager.todaysTasks();
+    taskManager.allTasks();
+
 
     newTaskNameInput.value = '';
     newTaskDescription.value = '';
@@ -45,6 +49,7 @@ tasksList.addEventListener('click', (event) => {
         task.status = 'DONE';
         taskManager.save();
         taskManager.render();
+
     }
 
     // Delete Listener
@@ -52,7 +57,11 @@ tasksList.addEventListener('click', (event) => {
         const parentTask = event.target.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         taskManager.deleteTask(taskId);
+        taskManager.deleteFromAllTasks(taskId);
+        taskManager.deleteFromTodaysTasks();
         taskManager.save();
         taskManager.render();
+
     }
+
 });

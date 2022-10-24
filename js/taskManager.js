@@ -1,3 +1,5 @@
+
+
 // task html
 const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => `
     <br>
@@ -34,7 +36,8 @@ class TaskManager {
       description: description,
       assignedTo: assignedTo,
       dueDate: dueDate,
-      status: status
+      status: status,
+
     };
 
     this.tasks.push(task);
@@ -51,7 +54,7 @@ class TaskManager {
     }
     this.tasks = newTasks;
   }
-// get task by id method
+  // get task by id method
   getTaskById(taskId) {
     let foundTask;
     for (let i = 0; i < this.tasks.length; i++) {
@@ -60,10 +63,9 @@ class TaskManager {
         foundTask = task;
       }
     }
-
     return foundTask;
   }
-// render method
+  // render method
   render() {
     const tasksHtmlList = [];
     for (let i = 0; i < this.tasks.length; i++) {
@@ -77,8 +79,53 @@ class TaskManager {
     const tasksList = document.querySelector('#newTaskList');
     tasksList.innerHTML = tasksHtml;
   }
+  // Today Task Box
+  todaysTasks() {
+    let todaysTasks = Number(1);
+    const today = new Date();
+    const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    let todayTasksBox = document.querySelector('#today-tasks');
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      if (todaysFormattedDate === task.dueDate) {
+        todayTasksBox.textContent = todaysTasks++;
+      }
+    }
+  };
+  deleteFromTodaysTasks(){
+    let todaysTasks = Number(1);
+    let todayTasksBox = document.querySelector('#today-tasks');
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      let todaysTasksList =  this.tasks.length;
+        if (this.tasks) {
+        todayTasksBox.textContent = todaysTasks;
+    }
+  }
+  };
 
-// Save tasks to local storage
+  // All Tasks Box
+  allTasks() {
+    let allTasksBox = document.querySelector('#all-tasks');
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      allTasksBox.textContent = this.tasks.length;
+    }
+  };
+
+  deleteFromAllTasks(taskId){
+    let allTasksBox = document.querySelector('#all-tasks');
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      let allTasksList = this.tasks.length;
+      if (task.id !== taskId) {
+        allTasksBox.textContent = allTasksList;
+      }
+    }
+  };
+
+
+  // Save tasks to local storage
   save() {
     const tasksJson = JSON.stringify(this.tasks);
     localStorage.setItem('tasks', tasksJson);
@@ -86,7 +133,7 @@ class TaskManager {
     localStorage.setItem('currentId', currentId);
   }
 
-// load tasks
+  // load tasks
   load() {
     if (localStorage.getItem('tasks')) {
       const tasksJson = localStorage.getItem('tasks');
@@ -98,4 +145,4 @@ class TaskManager {
       this.currentId = Number(currentId);
     }
   }
-}
+};
