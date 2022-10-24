@@ -3,9 +3,23 @@
 let taskManager = new TaskManager(0);
 
 
+
 taskManager.load();
 taskManager.render();
 
+
+// Page Load
+const pageContent = document.querySelector('#content');
+pageContent.style.opacity = 0;
+
+function showContentAfter1Second(){
+  setTimeout(() => {
+  pageContent.style.opacity = 100;
+}, 1000)
+};
+showContentAfter1Second();
+
+// Add a new task
 const newTaskForm = document.querySelector('#form');
 
 

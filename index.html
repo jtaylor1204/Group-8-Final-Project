@@ -5,6 +5,8 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Task Manager</title>
+
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -14,11 +16,12 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- FontAwesome Script -->
   <script src="https://kit.fontawesome.com/ba09da393d.js" crossorigin="anonymous"></script>
+</head>
 
 <!-- Navbar -->
 
@@ -30,111 +33,104 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="https://github.com/jtaylor1204/JWD-Final-Project" target="_blank">GitHub<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="https://github.com/jtaylor1204/JWD-Final-Project">GitHub</a>
+      </li> -->
     </ul>
   </div>
 </nav>
 
 <!-- Tasks Section -->
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card border-dark mb-3" style="width: 18rem">
-            <div class="card-body"><i class="fa-solid fa-calendar">
-            </i>Today's Tasks
-            <p type="number" id="today-tasks"></p>
-          </div>
+<body>
+<main>
+
+
+<div>
+
+</div>
+  <div class="container" id="content">
+    <div class="row sticky-top">
+      <div class="col-6">
+        <div class="card" >
+          <div class="card-body"><i class="fa-solid fa-calendar circle-icon-today">
+            </i>
+            <div type="number" id="today-tasks" class="card-numbers">0</div>
+            <p class ="card-titles">Today's Tasks</p>
           </div>
         </div>
-        <div class="col">
-          <div class="card border-dark mb-3" style="width: 18rem">
-            <div class="card-body"><i class="fa-solid fa-clock">
-            </i>All Tasks
-            <p type="number"  id="all-tasks" class="badge-warning">0</p>
-          </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body"><i class="fa-solid fa-clock circle-icon">
+            </i>
+            <div type="number" id="all-tasks" class="card-numbers">0</div>
+            <p class ="card-titles">All Tasks</p>
+
           </div>
         </div>
       </div>
     </div>
 
-<section id="title">
-  <title>Group 8</title>
-</head>
+    <!-- new task form -->
+    <section id="tasks">
+      <div class="container mt-5">
 
-<body>
+        <form class="row g-3" id="form">
+          <div class="col-md-4">
+            <label for="taskName" class="form-label"><strong>Task Name</strong></label>
+            <input type="text" class="form-control" id="taskName" required>
+          </div>
+          <div class="col-md-4">
+            <label for="taskDescription" class="form-label"><strong>Task Description</strong></label>
+            <input type="text" class="form-control" id="taskDescription" required>
+          </div>
+          <div class="col-md-4">
+            <label for="assignedTo" class="form-label"><strong>Assigned To</strong></label>
+            <input type="text" class="form-control" id="assignedTo" required>
+          </div>
+          <div class="col-md-8">
+            <label for="dueDate" class="form-label"><strong>Due Date</strong></label>
+            <input type="date" class="form-control" id="dueDate" required>
+          </div>
+          <div class="col-md-4 status-content">
+            <label for="status" class="form-label"><strong>Status</strong></label>
+            <select class="form-select" id="status" required>
+              <option selected disabled value="">Select</option>
+              <option value="To-Do">To-Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="In Review">In Review</option>
+            </select>
+          </div>
+          <div class ="col-md-4"></div>
+          <div class ="col-md-4 button-col"><button id="button" type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Task</button></div>
+          <div class ="col-md-4"></div>
 
+          </div>
+        </form>
+    </section>
 
+    <!-- Task Card -->
 
-    <div class="container-fluid">
-
-
-<!-- new task form -->
-      <section id="tasks">
-        <div class="container mt-5">
-
-          <form class="row g-3" id="form">
-            <div class="col-md-4">
-              <label for="taskName" class="form-label"><strong>Task Name</strong></label>
-              <input type = "text" class="form-control" id="taskName" required>
-            </div>
-            <div class="col-md-4">
-              <label for="taskDescription" class="form-label"><strong>Task description</strong></label>
-              <input type = "text" class="form-control" id="taskDescription" required>
-            </div>
-            <div class="col-md-4">
-              <label for="assignedTo" class="form-label"><strong>Assigned To</strong></label>
-              <input type = "text" class="form-control" id="assignedTo" required>
-            </div>
-            <div class="col-md-8">
-              <label for="dueDate" class="form-label"><strong>Due Date</strong></label>
-              <input type = "date" class="form-control" id="dueDate" required>
-            </div>
-            <div class="col-md-4">
-              <label for="status" class="form-label"><strong>Status</strong></label>
-              <select class="form-select" id="status" required>
-                <option selected disabled value="">Select</option>
-                <option value="To-Do">To-Do</option>
-                <option value="In Progress">In Progress</option>
-                <option value="In Review">In Review</option>
-              </select>
-            </div>
-
-              <button id="button" type="submit" class="btn btn-primary">+</button>
-
-          </form>
-            </div>
-        </section>
-
-<!-- Task Card -->
-
-<section id="taskCard">
-  <div id="newTaskList" class="container-mt-5">
-    <li class="list-group-item">
-        <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
+    <section id="taskCard">
+      <div id="newTaskList" class="container-mt-5">
+        <li class="list-group-item">
+          <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
             <h5>Take out trash</h5>
             <span class="badge badge-danger">In progress</span>
-        </div>
-        <div class="d-flex w-100 mb-3 justify-content-between">
+          </div>
+          <div class="d-flex w-100 mb-3 justify-content-between">
             <small>Assigned To: Nick</small>
             <small>Due: 20/09/2020</small>
-        </div>
-        <p>Take out the trash to the front of the house</p>
-    </li>
+          </div>
+          <p>Take out the trash to the front of the house</p>
+        </li>
+      </div>
+    </section>
 
-  </div>
-
-</section>
+</div>
 
 
 
@@ -145,6 +141,12 @@
   <script src="js/taskManager.js"></script>
   <script src="js/index.js"></script>
 
+</main>
+<!-- <footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">(c) 2022 Jaida Taylor.</span>
+  </div>
+</footer> -->
 </body>
 
 </html>

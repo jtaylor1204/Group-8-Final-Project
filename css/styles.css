@@ -1,35 +1,98 @@
 body{
-  background-color: #FFF8EA;
+  background-color: #F7F5F2;
   font-family: 'Fuzzy Bubbles', cursive;
+
 }
 h1{
   font-weight: 700;
 }
 
-/* IDs */
-#dropdownMenuButton1{
-  float: right;
+i{
+  color: #ffffff;
 }
-#duedate{
-  width: 38rem;
+p{
+  font-weight: 700;
 }
+/* footer{
+  padding-top:700%;
+} */
 
-#search{
-  width: 18rem;
-}
+/* IDs */
 #tasks{
-  width: 38rem;
-  align-items: center;
+  align-content: center;
+  width: 100%;
   flex-wrap: nowrap;
   border-radius: 40px;
-  background: #9E7676;
-  box-shadow:  5px 5px 10px #886565,
-               -5px -5px 10px #b48787;
-}
-#button{
-  align: center;
+  background: #ffffff;
+  box-shadow:  5px 5px 10px #d1d1d1,
+               -5px -5px 10px #ffffff;
 }
 
+#content{
+        opacity: 1;
+        transition: opacity 2s ease-in-out;
+        -moz-transition: opacity 2s ease-in-out;
+        -webkit-transition: opacity 2s ease-in-out;
+    }
+}
+
+#newTasksList{
+  display: table;
+  margin: 0 auto;
+}
+
+/* Content */
+.container{
+  width: 50%;
+}
+/* icons */
+.circle-icon{
+  background: #F3A953;
+  width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   text-align: center;
+   line-height: 50px;
+   vertical-align: middle;
+   padding: 10px;
+}
+
+.circle-icon-today{
+  background: #366ED8;
+  width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   text-align: center;
+   line-height: 50px;
+   vertical-align: middle;
+   padding: 10px;
+}
+
+/* Bootstrap Cards */
+.card{
+  border-radius: 20px;
+  border: none;
+  box-shadow:  5px 5px 10px #d1d1d1,
+               -5px -5px 10px #ffffff;
+
+}
+.card-titles{
+padding-top: 10px;
+}
+
+.card-numbers{
+  display: inline-grid;
+  margin-left: 120px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* New Task Form */
+.button-col{
+  padding-left: 50px;
+  padding-top: 20px;
+  width: 100px;
+}
 /* Task Buttons */
 
 .btn-outline-success{
@@ -48,15 +111,28 @@ h1{
 }
 
 /* Task Form */
-.col{
-  flex-basis: 0;
-  flex-grow: 0;
+.col-md-8, .status-content{
+  padding-top: 20px;
 }
 
 .mt-5{
-  padding: 20px 10px 20px 20px;
+  padding: 20px 30px 20px 30px;
+  width: 100%;
 }
+.list-group-item{
+  width: 100%;
+  align-items: center;
+  height: 15rem;
+  background-color: #D8D8D8;
+  border-radius: 20px;
+  border: none;
+  box-shadow:  5px 5px 10px #d1d1d1,
+               -5px -5px 10px #ffffff;
 
-.fa-solid{
-  padding-right: 10px;
+
+
+
+/* Navbar */
+.navbar{
+
 }

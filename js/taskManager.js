@@ -146,3 +146,17 @@ class TaskManager {
     }
   }
 };
+
+//   loadContentAfter2Seconds(){
+//
+//       return new Promise(resolve => {
+//         setTimeout(() => {
+//         	 resolve(pageContent);
+//         }, 2000);
+//       });
+//     }
+//     async function asyncCall() {
+//       const result = await showContentAfter2Seconds();
+//       document.body.innerHTML = result;
+//     }
+// };
