@@ -80,27 +80,31 @@ class TaskManager {
     tasksList.innerHTML = tasksHtml;
   }
   // Today Task Box
-  todaysTasks() {
-    let todaysTasks = Number(1);
+    todaysTasks() {
+      let todaysTasks = Number(1);
+      const today = new Date();
+      const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+      let todayTasksBox = document.querySelector('#today-tasks');
+      for (let i = 0; i < this.tasks.length; i++) {
+        const task = this.tasks[i];
+        if (todaysFormattedDate === task.dueDate) {
+          todayTasksBox.textContent = todaysTasks++;
+        }
+      }
+    };
+
+  deleteFromTodaysTasks(){
     const today = new Date();
     const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     let todayTasksBox = document.querySelector('#today-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
+        let todaysTasks = Number(this.tasks.length);
       if (todaysFormattedDate === task.dueDate) {
-        todayTasksBox.textContent = todaysTasks++;
-      }
-    }
-  };
-  deleteFromTodaysTasks(){
-    let todaysTasks = Number(1);
-    let todayTasksBox = document.querySelector('#today-tasks');
-    for (let i = 0; i < this.tasks.length; i++) {
-      const task = this.tasks[i];
-      let todaysTasksList =  this.tasks.length;
-        if (this.tasks) {
         todayTasksBox.textContent = todaysTasks;
-    }
+
+
+      }
   }
   };
 
@@ -109,7 +113,7 @@ class TaskManager {
     let allTasksBox = document.querySelector('#all-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-      allTasksBox.textContent = this.tasks.length;
+      allTasksBox.textContent = Number(this.tasks.length);
     }
   };
 
@@ -117,7 +121,7 @@ class TaskManager {
     let allTasksBox = document.querySelector('#all-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-      let allTasksList = this.tasks.length;
+      let allTasksList = Number(this.tasks.length);
       if (task.id !== taskId) {
         allTasksBox.textContent = allTasksList;
       }
