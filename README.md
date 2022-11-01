@@ -19,7 +19,7 @@ This app was created as a final project for my junior web developer bootcamp.
 
 - Tasks can be deleted from the screen and the task boxes.
 
-### Bugs/Updates to be made - I am always open to comments and guidance on how to solve these!
+## Bugs/Updates to be made - I am always open to comments and guidance on how to solve these!
 
 - [ ] Fix the bug in the decrement of the task boxes (they currently only decrement to 1)
 - [ ] The first day of the month prints as an extra day of the previous month (i.e; a task assigned a "11/1/2022" due date prints as "10/32/2022"
