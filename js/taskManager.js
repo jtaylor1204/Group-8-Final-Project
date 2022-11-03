@@ -71,7 +71,7 @@ class TaskManager {
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
       const date = new Date(task.dueDate);
-      const formattedDate = `${date.getMonth() + 1}/${date.getDate()+ 1}/${date.getFullYear()}`;
+      const formattedDate = `${date.getMonth() + 1}/${date.getDate("0")+ 1}/${date.getFullYear()}`;
       const taskHtml = createTaskHtml(task.id, task.name, task.description, task.assignedTo, formattedDate, task.status);
       tasksHtmlList.push(taskHtml);
     }
@@ -80,30 +80,37 @@ class TaskManager {
     tasksList.innerHTML = tasksHtml;
   }
   // Today Task Box
-    todaysTasks() {
-      let todaysTasks = Number(1);
-      const today = new Date();
-      const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-      let todayTasksBox = document.querySelector('#today-tasks');
-      for (let i = 0; i < this.tasks.length; i++) {
-        const task = this.tasks[i];
-        if (todaysFormattedDate === task.dueDate) {
-          todayTasksBox.textContent = todaysTasks++;
-        }
-      }
-    };
-
-  deleteFromTodaysTasks(){
+  todaysTasks() {
+    let todaysTasks= Number(1);
     const today = new Date();
-    const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    let todaysDate = today.getDate();
+    if(todaysDate < 10){
+      todaysDate = '0' + todaysDate;
+    }
+    const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${todaysDate}`;
     let todayTasksBox = document.querySelector('#today-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-        let todaysTasks = Number(this.tasks.length);
       if (todaysFormattedDate === task.dueDate) {
-        todayTasksBox.textContent = todaysTasks;
+        todayTasksBox.innerHTML = todaysTasks++;
+      }
+      
+    }
+  };
 
-
+  deleteFromTodaysTasks(){
+    let todayTasksBox = document.querySelector('#today-tasks');
+    const today = new Date();
+    let todaysDate = today.getDate();
+    if(todaysDate < 10){
+      todaysDate = '0' + todaysDate;
+    }
+    const todaysFormattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${todaysDate}`;
+    
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];    
+      if (todaysFormattedDate === task.dueDate) {
+        --todayTasksBox.innerHTML;
       }
   }
   };
@@ -113,7 +120,7 @@ class TaskManager {
     let allTasksBox = document.querySelector('#all-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-      allTasksBox.textContent = Number(this.tasks.length);
+      allTasksBox.textContent = this.tasks.length;
     }
   };
 
@@ -121,12 +128,13 @@ class TaskManager {
     let allTasksBox = document.querySelector('#all-tasks');
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-      let allTasksList = Number(this.tasks.length);
+      // let allTasksList = this.tasks.length;
       if (task.id !== taskId) {
-        allTasksBox.textContent = allTasksList;
+        --allTasksBox.textContent;
+      }
       }
     }
-  };
+  
 
 
   // Save tasks to local storage
