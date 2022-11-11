@@ -1,6 +1,5 @@
 # Task Manager
 ![task manager](https://user-images.githubusercontent.com/102535399/201368250-020b3cf4-bb35-454a-a805-52ef40b9caf4.gif)
-https://user-images.githubusercontent.com/102535399/201368819-76bd2255-3a86-4553-95a1-623acc6fbd55.mp4
 ![12](https://user-images.githubusercontent.com/102535399/199247384-5fa822cf-24b4-4b1c-895c-a306cc2cc660.png)
 
 ## Overview
