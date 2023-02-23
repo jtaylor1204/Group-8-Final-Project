@@ -34,7 +34,7 @@ p{
         -moz-transition: opacity 2s ease-in-out;
         -webkit-transition: opacity 2s ease-in-out;
     }
-}
+
 
 #newTasksList{
   display: table;
@@ -130,9 +130,11 @@ padding-top: 10px;
                -5px -5px 10px #ffffff;
 
 
-
-
-/* Navbar */
-.navbar{
-
 }
+
+.addTask{
+  margin-left: 40%;
+  font-size: 2rem;
+  padding-top: 5%;
+}
+
