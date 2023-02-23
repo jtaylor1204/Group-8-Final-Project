@@ -13,9 +13,12 @@ i{
 p{
   font-weight: 700;
 }
-/* footer{
-  padding-top:700%;
-} */
+footer{
+  padding-top:10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* IDs */
 #tasks{
