@@ -30,27 +30,25 @@ const newTaskForm = document.querySelector('#form');
 
 newTaskForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const newTaskNameInput = document.querySelector('#taskName');
     const newTaskDescription = document.querySelector('#taskDescription');
     const newTaskAssignedTo = document.querySelector('#assignedTo');
     const newTaskDueDate = document.querySelector('#dueDate');
     const newStatus = document.querySelector('#status');
 
 
-    const name = newTaskNameInput.value;
     const description = newTaskDescription.value;
     const assignedTo = newTaskAssignedTo.value;
     const dueDate = newTaskDueDate.value;
     const status = newStatus.value;
 
-    taskManager.addTask(name, description, assignedTo, dueDate, status);
+    taskManager.addTask(description, assignedTo, dueDate, status);
     taskManager.save();
     taskManager.render();
     taskManager.todaysTasks();
     taskManager.allTasks();
 
 
-    newTaskNameInput.value = '';
+
     newTaskDescription.value = '';
     newTaskAssignedTo.value = '';
     newTaskDueDate.value = '';
@@ -66,7 +64,7 @@ tasksList.addEventListener('click', (event) => {
         const parentTask = event.target.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const task = taskManager.getTaskById(taskId);
-        task.status = 'DONE';
+        task.status = 'DONE!';
         taskManager.save();
         taskManager.render();
 

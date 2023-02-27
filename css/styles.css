@@ -1,6 +1,8 @@
 body{
   background-color: #F7F5F2;
   font-family: 'Fuzzy Bubbles', cursive;
+box-sizing: border-box;
+background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
 
 }
 h1{
@@ -13,11 +15,11 @@ i{
 p{
   font-weight: 700;
 }
-footer{
-  padding-top:10%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;  
 }
 
 /* IDs */
@@ -36,17 +38,14 @@ footer{
         transition: opacity 2s ease-in-out;
         -moz-transition: opacity 2s ease-in-out;
         -webkit-transition: opacity 2s ease-in-out;
+        padding-bottom: 2.5rem;  
     }
 
 
-#newTasksList{
-  display: table;
-  margin: 0 auto;
-}
-
 /* Content */
-.container{
-  width: 50%;
+.container-fluid{
+  position: relative;
+  min-height: 90vh;
 }
 /* icons */
 .circle-icon{
@@ -92,9 +91,9 @@ padding-top: 10px;
 
 /* New Task Form */
 .button-col{
-  padding-left: 50px;
+
   padding-top: 20px;
-  width: 100px;
+ 
 }
 /* Task Buttons */
 
@@ -123,15 +122,25 @@ padding-top: 10px;
   width: 100%;
 }
 .list-group-item{
+  margin-top: 10px;
   width: 100%;
-  align-items: center;
   height: 15rem;
   background-color: #D8D8D8;
-  border-radius: 20px;
-  border: none;
+  border-radius: 25px !important;
   box-shadow:  5px 5px 10px #d1d1d1,
                -5px -5px 10px #ffffff;
 
+
+}
+/* Different Color Notes */
+ 
+
+#newTaskList{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 1% auto;
 
 }
 
@@ -140,4 +149,33 @@ padding-top: 10px;
   font-size: 2rem;
   padding-top: 5%;
 }
+
+@media screen and (max-width: 450px) {
+  .card-numbers{
+    font-size: 16px;
+    margin-left: 10px;
+  }
+}
+
+/* @media screen and (max-width: 1200px) {
+ #button{
+   
+    margin-left: 40px;
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+  #button{
+    
+     margin-left: 0px;
+   }
+ }
+
+ @media screen and (max-width: 800px) {
+  #button{
+    
+     margin-left: 0px;
+   }
+ } */
 

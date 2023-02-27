@@ -1,24 +1,25 @@
 
 
 // task html
-const createTaskHtml = (id, name, description, assignedTo, dueDate, status) => `
+const createTaskHtml = (id, description, assignedTo, dueDate, status) => `
     <br>
+    <div class = "col-md-6 justify-content-between align-items-center">
     <li class="list-group-item task-style task-bg" data-task-id=${id}>
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
-            <h5>${name}</h5>
+        <p>${description}</p>
             <span class="badge ${status === 'To-Do' ? 'badge badge-danger' : status === 'In Progress' ? 'badge badge-warning'
                     : status === 'In Review' ? 'badge badge-info': 'badge badge-success'}">${status}</span>
         </div>
         <div class="d-flex w-100 mb-3 justify-content-between">
-            <small>Assigned To: ${assignedTo}</small>
+            <p>Assigned To: ${assignedTo}</p>
             <small>Due: ${dueDate}</small>
         </div>
-        <p>${description}</p>
         <div class="d-flex w-100 justify-content-end btns">
-            <button class="btn-background btn btn-outline-success done-button mr-1 ${status === 'DONE' ? 'invisible' : 'visible'}">Mark As Done</button>
+            <button class="btn-background btn btn-outline-success done-button mr-1 ${status === 'DONE!' ? 'invisible' : 'visible'}">Done</button>
             <button class="btn-background btn btn-outline-danger delete-button">Delete</button>
         </div>
     </li>
+    </div>
     <br>
 `;
 
@@ -29,10 +30,9 @@ class TaskManager {
     this.currentId = currentId;
   }
 
-  addTask(name, description, assignedTo, dueDate, status = "TO-DO") {
+  addTask(description, assignedTo, dueDate, status = "TO-DO") {
     const task = {
       id: this.currentId++,
-      name: name,
       description: description,
       assignedTo: assignedTo,
       dueDate: dueDate,
@@ -72,7 +72,7 @@ class TaskManager {
       const task = this.tasks[i];
       const date = new Date(task.dueDate);
       const formattedDate = `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + (date.getDate() + 1)).slice(-2)}/${date.getFullYear()}`;
-      const taskHtml = createTaskHtml(task.id, task.name, task.description, task.assignedTo, formattedDate, task.status);
+      const taskHtml = createTaskHtml(task.id,task.description, task.assignedTo, formattedDate, task.status);
       tasksHtmlList.push(taskHtml);
       // console.log('this is the task due date' + task.dueDate)
     }

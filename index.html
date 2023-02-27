@@ -37,12 +37,8 @@
 <!-- Tasks Section -->
 
 <body>
-<main>
+<div class="container-fluid">
 
-
-<div>
-
-</div>
   <div class="container" id="content">
     <div id= "task-count" class="row sticky-top">
       <div class="col-6">
@@ -71,23 +67,21 @@
       <div class="container mt-5">
 
         <form class="row g-3" id="form">
-          <div class="col-md-4">
-            <label for="taskName" class="form-label"><strong>Task Name</strong></label>
-            <input type="text" class="form-control" id="taskName" required>
-          </div>
-          <div class="col-md-4">
+         
+          <div class="col-md-12">
             <label for="taskDescription" class="form-label"><strong>Task Description</strong></label>
-            <input type="text" class="form-control" id="taskDescription" required>
+            <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
+
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="assignedTo" class="form-label"><strong>Assigned To</strong></label>
-            <input type="text" class="form-control" id="assignedTo" required>
+            <input type="text" class="form-control" id="assignedTo">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-3">
             <label for="dueDate" class="form-label"><strong>Due Date</strong></label>
             <input type="date" class="form-control" id="dueDate" required>
           </div>
-          <div class="col-md-4 status-content">
+          <div class="col-md-3 status-content">
             <label for="status" class="form-label"><strong>Status</strong></label>
             <select class="form-select" id="status" required>
               <option selected disabled value="">Select</option>
@@ -96,27 +90,34 @@
               <option value="In Review">In Review</option>
             </select>
           </div>
-          <div class ="col-md-4"></div>
-          <div class ="col-md-4 button-col"><button id="button" type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Task</button></div>
-          <div class ="col-md-4"></div>
-
-          </div>
+          <!-- <div class="col-md-3 status-content">
+            <label for="color" class="form-label"><strong>Color</strong></label>
+            <select class="form-select" id="color">
+              <option selected disabled value="">Select</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Blue">Blue</option>
+              <option value="Red">Red</option>
+            </select>
+          </div> -->
+       
+          <div class ="col-md-12 d-flex justify-content-center button-col"><button id="button" type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Task</button></div>
         </form>
+         </div>
     </section>
 
     <!-- Task Card -->
 
     <section id="taskCard">
-      <div id="newTaskList" class="container-mt-5">
-       
-      </div>
+      <div id="newTaskList" class="container-mt-5"></div>
     </section>
-
-
- <div class="footer">
+  </div>
+  <div class="col-md-12 d-flex justify-content-center footer">
     <footer>This app was coded by <a href="https://jaidataylor.tech" target="_blank">Jaida Taylor</a> and is <a href="https://github.com/jtaylor1204/JWD-Final-Project" target="_blank">open-sourced.</a></i></footer>
   </div> 
   </div>
+ 
+
+
 
 
   <!-- Bootstrap Scripts -->
@@ -126,12 +127,6 @@
   <script src="js/taskManager.js"></script>
   <script src="js/index.js"></script>
 
-</main>
-<!-- <footer class="footer mt-auto py-3 bg-light">
-  <div class="container">
-    <span class="text-muted">(c) 2022 Jaida Taylor.</span>
-  </div>
-</footer> -->
 </body>
 
 </html>
